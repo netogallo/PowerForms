@@ -1,0 +1,205 @@
+<!-- Sidebar -->
+<div id="sidebar">
+
+	<!-- Logo -->
+		<a href="#"><div id="logo">
+			<h1>PowerForms</h1>
+		</div></a>
+
+	<!-- Facebook login -->
+		<section class="is-text-style1">
+			<div class="inner">
+				<script>
+				  window.fbAsyncInit = function() {
+				  FB.init({
+				    appId      : 1465599910319624,
+				    status     : true, // check login status
+				    cookie     : true, // enable cookies to allow the server to access the session
+				    xfbml      : true  // parse XFBML
+				  });
+
+				  // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+				  // for any authentication related change, such as login, logout or session refresh. This means that
+				  // whenever someone who was previously logged out tries to log in again, the correct case below 
+				  // will be handled. 
+				  FB.Event.subscribe('auth.authResponseChange', function(response) {
+				    // Here we specify what we do with the response anytime this event occurs. 
+				    if (response.status === 'connected') {
+				      // The response object is returned with a status field that lets the app know the current
+				      // login status of the person. In this case, we're handling the situation where they 
+				      // have logged in to the app.
+				      testAPI();
+				    } else if (response.status === 'not_authorized') {
+				      // In this case, the person is logged into Facebook, but not into the app, so we call
+				      // FB.login() to prompt them to do so. 
+				      // In real-life usage, you wouldn't want to immediately prompt someone to login 
+				      // like this, for two reasons:
+				      // (1) JavaScript created popup windows are blocked by most browsers unless they 
+				      // result from direct interaction from people using the app (such as a mouse click)
+				      // (2) it is a bad experience to be continually prompted to login upon page load.
+				      FB.login();
+				    } else {
+				      // In this case, the person is not logged into Facebook, so we call the login() 
+				      // function to prompt them to do so. Note that at this stage there is no indication
+				      // of whether they are logged into the app. If they aren't then they'll see the Login
+				      // dialog right after they log in to Facebook. 
+				      // The same caveats as above apply to the FB.login() call here.
+				      FB.login();
+				    }
+				  });
+				  };
+
+				  // Load the SDK asynchronously
+				  (function(d){
+				   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+				   if (d.getElementById(id)) {return;}
+				   js = d.createElement('script'); js.id = id; js.async = true;
+				   js.src = "//connect.facebook.net/en_US/all.js";
+				   ref.parentNode.insertBefore(js, ref);
+				  }(document));
+
+				  // Here we run a very simple test of the Graph API after login is successful. 
+				  // This testAPI() function is only called in those cases. 
+				  function testAPI() {
+				    console.log('Welcome!  Fetching your information.... ');
+				    FB.api('/me', function(response) {
+				      console.log('Good to see you, ' + response.name + '.');
+				    });
+				  }
+				</script>
+
+				<!--
+				  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+				  present a graphical Login button that triggers the FB.login() function when clicked. -->
+
+				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+			</div>
+		</section>
+
+	<!-- Search -->
+		<section class="is-search">
+			<form method="post" action="#">
+				<input type="text" class="text" name="search" placeholder="Search tags" />
+			</form>
+		</section>
+
+	<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li class="current_page_item"><a href="#">Latest Post</a></li>
+				<li><a href="create-form">Create Form</a></li>
+				<li><a href="#">Browse</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+
+	<!-- Text -->
+		<section class="is-text-style1">
+			<div class="inner">
+				<p>
+					<strong>PowerForms:</strong> Forms, letters and statements for any situation. In the language you need.
+				</p>
+			</div>
+		</section>
+
+	<!-- Recent Posts -->
+		<section class="is-recent-posts">
+			<header>
+				<h2>Recent Posts</h2>
+			</header>
+			<ul>
+				<li><a href="#">Nothing happened</a></li>
+				<li><a href="#">My Dearest Cthulhu</a></li>
+				<li><a href="#">The Meme Meme</a></li>
+				<li><a href="#">Now Full Cyborg</a></li>
+				<li><a href="#">Temporal Flux</a></li>
+			</ul>
+		</section>
+
+	<!-- Recent Comments -->
+		<section class="is-recent-comments">
+			<header>
+				<h2>Recent Comments</h2>
+			</header>
+			<ul>
+				<li>case on <a href="#">Now Full Cyborg</a></li>
+				<li>molly on <a href="#">Untitled Post</a></li>
+				<li>case on <a href="#">Temporal Flux</a></li>
+			</ul>
+		</section>
+
+	<!-- Calendar -->
+		<section class="is-calendar">
+			<div class="inner">
+				<table>
+					<caption>February 2013</caption>
+					<thead>
+						<tr>
+							<th scope="col" title="Monday">M</th>
+							<th scope="col" title="Tuesday">T</th>
+							<th scope="col" title="Wednesday">W</th>
+							<th scope="col" title="Thursday">T</th>
+							<th scope="col" title="Friday">F</th>
+							<th scope="col" title="Saturday">S</th>
+							<th scope="col" title="Sunday">S</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="4" class="pad"><span>&nbsp;</span></td>
+							<td><span>1</span></td>
+							<td><span>2</span></td>
+							<td><span>3</span></td>
+						</tr>
+						<tr>
+							<td><span>4</span></td>
+							<td><span>5</span></td>
+							<td><a href="#">6</a></td>
+							<td><span>7</span></td>
+							<td><span>8</span></td>
+							<td><span>9</span></td>
+							<td><a href="#">10</a></td>
+						</tr>
+						<tr>
+							<td><span>11</span></td>
+							<td><span>12</span></td>
+							<td><span>13</span></td>
+							<td class="today"><a href="#">14</a></td>
+							<td><span>15</span></td>
+							<td><span>16</span></td>
+							<td><span>17</span></td>
+						</tr>
+						<tr>
+							<td><span>18</span></td>
+							<td><span>19</span></td>
+							<td><span>20</span></td>
+							<td><span>21</span></td>
+							<td><span>22</span></td>
+							<td><a href="#">23</a></td>
+							<td><span>24</span></td>
+						</tr>
+						<tr>
+							<td><a href="#">25</a></td>
+							<td><span>26</span></td>
+							<td><span>27</span></td>
+							<td><span>28</span></td>
+							<td class="pad" colspan="3"><span>&nbsp;</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	
+	<!-- Copyright -->
+		<div id="copyright">
+			<p>
+				<div id="fb-root"></div>
+
+				&copy; 2014 PowerForms.<br />
+				Images: <a href="http://n33.co">n33</a>, <a href="http://fotogrph.com">fotograph</a><br />
+				Design: <a href="http://html5up.net/">HTML5 UP</a>
+			</p>
+		</div>
+
+</div>

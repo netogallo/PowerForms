@@ -1,0 +1,27 @@
+<% include base %>
+
+<!-- Content -->
+	<div id="content">
+		<div id="content-inner">
+			<!-- Post -->
+				<article class="is-post is-post-excerpt">
+					<header>
+						<h2><a href="#"><%= letter.displayname %></a></h2>
+						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
+							<%= letter.tags[i].name %>
+							<% } %>
+						</span>
+					</header>
+					<div class="info">
+						<span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
+						<ul class="stats">
+							<li><a href="#" class="fa fa-comment">16</a></li>
+							<li><a href="#" class="fa fa-heart">32</a></li>
+							<li><a href="#" class="fa fa-facebook">128</a></li>
+						</ul>
+					</div>
+					<p><%- letter.letter %></p>
+				</article>
+		</div>
+	</div>
+<% include base-footer %>
