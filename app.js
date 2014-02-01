@@ -5,12 +5,13 @@
 
 var Prelude = require('prelude-ls');
 var sqlite = require('sqlite3').verbose();
-var lightOrm = require('light-orm');
-lightOrm.driver = new sqlite.Database('db.sqlite');
+orm = require('orm');
+orm.connect('sqlite://db.sqlite');
 var http = require('http');
 
 var express = require('express')
-  , routes = require('./routes')
+//  , routes = require('./routes')
+  , models = require('./routes/models')
 //  , user = require('./routes/user')
 //  , photobombs = require('./routes/photobombs')
   , frontend = require('./routes/frontend')
