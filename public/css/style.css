@@ -1021,6 +1021,19 @@
 			box-shadow: 0 0 0 1px rgba(255,255,255,0.05), inset 0 0 0.25em 0 rgba(0,0,0,0.25);
 		}	
 
+#new-letter-submit {
+	border-radius: 0.4em;
+	-webkit-appearance: none;
+	border: solid 1px #ddd;
+	padding: 0.5em;
+	width: 100%;
+}
+
+#article-new-letter {
+	background-color: #F2EBB6;
+	padding: 2em 2em 5em 2em;
+}
+
 /*********************************************************************************/
 /* Wrapper                                                                       */
 /*********************************************************************************/
