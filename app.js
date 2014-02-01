@@ -4,16 +4,13 @@
  */
 
 var Prelude = require('prelude-ls');
-var sqlite = require('sqlite3').verbose();
+var sqlite = require('sqlite3').verbose()
+  , models = require('./routes/models');
 orm = require('orm');
-orm.connect('sqlite://db.sqlite');
+orm.connect('sqlite://db1.sqlite', models.models);
 var http = require('http');
 
 var express = require('express')
-//  , routes = require('./routes')
-  , models = require('./routes/models')
-//  , user = require('./routes/user')
-//  , photobombs = require('./routes/photobombs')
   , frontend = require('./routes/frontend')
   , http = require('http')
   , path = require('path');
@@ -42,8 +39,11 @@ app.configure('development', function(){
 });
 //app.use(partials());
 
-app.get('/', frontend.top);
-app.get('/editor', frontend.editor);
+var handlers = frontend.init(models);
+
+app.get('/', handlers.top);
+app.get('/editor', handlers.editor);
+app.get('/letter/:name', handlers.formname);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
