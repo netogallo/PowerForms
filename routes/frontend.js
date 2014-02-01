@@ -1,6 +1,6 @@
 exports.top = function(req,res){
 
-    res.render('base');
+    res.render('homepage');
 }
 
 exports.editor = function(req,res){
