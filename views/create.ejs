@@ -1,0 +1,38 @@
+<% include base %>
+
+<!-- Content -->
+	<div id="content">
+		<div id="content-inner">
+			<!-- Post -->
+				<article class="is-post is-post-excerpt">
+					<header>
+						<h2><a href="#">Create new Letter</a></h2>
+						<span class="byline">This form lets you create a new letter. Please fill in all fields.</span>
+					</header>
+					<p>
+					<form>
+						Title: <input type="text" name="letter-title"><br><br>
+						Tags (separated by semi-colons): <input type="text" name="letter-tags"><br><br>
+						Letter:
+					  <script src="/js/jquery.min.js"></script>
+					  <script src="/cleditor/jquery.cleditor.js"></script>
+					  <script src="/cleditor-tables/jquery.cleditor.table.js"></script>
+					  <script src="/cleditor-html/jquery.cleditor.html.js"></script>
+					  <link rel="stylesheet" type="text/css" 
+						href="/cleditor/jquery.cleditor.css" />
+					  </head>
+					  <body>
+					    <div>
+					      <textarea id="mytext" rows="100" cols="50"></textarea>
+					    </div>
+					    <script type="text/javascript">
+					      $("#mytext").cleditor();
+					    </script>
+					    <br>
+						<input type="submit" value="Submit">
+					</form>
+				    </p>
+				</article>
+		</div>
+	</div>
+<% include base-footer %>

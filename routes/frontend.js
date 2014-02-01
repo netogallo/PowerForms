@@ -27,5 +27,9 @@ exports.init = function(models){
 		});
 	}
 
+	objs.createform = function(req,res){
+		res.render('create');
+	}
+
 	return objs;
 };
