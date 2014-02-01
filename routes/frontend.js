@@ -1,10 +1,31 @@
-exports.top = function(req,res){
+exports.init = function(models){
 
-    res.render('homepage');
-}
+	var objs={};
 
-exports.editor = function(req,res){
+	objs.top = function(req,res){
 
-    res.render('testing');
-}
+	    res.render('homepage');
+	}
 
+	objs.editor = function(req,res){
+
+	    res.render('testing');
+	}
+
+	objs.formname = function(req,res){
+		models.Letter.find({name:req.params.name}, function(err, letter){
+			var content = {letter: {name:letter[0].name, displayname:letter[0].displayname, letter:letter[0].letter}};
+			if(letter.length>=1) {
+				letter[0].getTags(function(err,arg) {
+					console.log(arg);
+					content.letter.tags=arg;
+					res.render('letter',content);
+				});
+			} else {
+				console.log("error");
+			}
+		});
+	}
+
+	return objs;
+};
