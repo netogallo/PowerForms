@@ -45,6 +45,7 @@ app.get('/', handlers.top);
 app.get('/editor', handlers.editor);
 app.get('/letter/:name', handlers.formname);
 app.get('/create-form', handlers.createform);
+app.post('/create-form/submit', handlers.submitform);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

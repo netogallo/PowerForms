@@ -31,5 +31,22 @@ exports.init = function(models){
 		res.render('create');
 	}
 
+	objs.submitform = function(req,res){
+		console.log(req.body);
+	    var tags = [];
+	    req.body.tags.split(';').forEach(function(t){
+	    	tags.push({name: t});
+	    });
+	    models.Tag.create(tags, function (err, tagsm) {
+	        var tags_id = tagsm.map(function(m) {
+	            return m.id;
+	        });
+			var letter = new models.Letter({name:req.body.name.replace(' ',''), displayname:req.body.name, tags: tags_id, letter: req.body.letter});
+			letter.save(function(){
+				res.json({err:false,letter:letter});
+			});
+		});
+	}
+
 	return objs;
 };

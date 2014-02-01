@@ -45,20 +45,20 @@ exports.models = function(err, db){
 
     db.sync();
 
-    var tag1 = new exports.Tag({
+    var tag1 =  {
         name:"yellow",
-    });
+    };
+    var tag2 = {
+        name:"blue",
+    };
 
-    tag1.save(function(arg) {
-        
-        var tag2 = new exports.Tag({
-            name:"green",
+    var tags = [tag1, tag2];
+    exports.Tag.create(tags, function (err, models) {
+        var tags_id = models.map(function(m) {
+            return m.id;
         });
-
-        tag2.save(function(arg) {
-
-        var contractcancelation = new exports.Letter({
-            name:"O2ContractCancelation",
+    exports.Letter.create({
+            name:"cc",
             displayname: "O2 Contract Cancelation",
             letter:"Max Mustermann, Straße/Hausnummer, PLZ/Ort<br>" +
                     "O2 D2 GmbH<br>" +
@@ -79,12 +79,7 @@ exports.models = function(err, db){
 
                     "Vorname Name",
             html:"#",
-            tags: [tag1,tag2],      
-        });
-
-        contractcancelation.save();
-    })});
-
-
-    
+            tags: models,      
+        }, function (err, model){});
+    });
 }
