@@ -1,40 +1,55 @@
 <% include base %>
 
 <!-- Content -->
-	<div id="content">
-		<div id="content-inner">
-	
-			<!-- Post -->
-				<article class="is-post is-post-excerpt">
-					<header>
-						<!--
-							Note: Titles and bylines will wrap automatically when necessary, so don't worry
-							if they get too long. You can also remove the "byline" span entirely if you don't
-							need a byline.
-						-->
-						<h2><a href="#">Welcome to PowerForms</a></h2>
-						<span class="byline">Forms, letters and statements for any situation. In the language you need.</span>
-					</header>
-					<a href="#" class="image image-full"><img src="http://www.impowerable.com/wp-content/uploads/2012/06/writing_a_letter.jpg" alt="" height=300 /></a>
-					<p>
-						<strong>Hello!</strong> You're looking at PowerForms, a site that helps you whenever you need to write letters or talk to any institution, organization, professor, etc. Next time you need to write an excuse or cancel a contract just fill in your name and other info and you're good to go. Even if you need it in German. 
-					</p>
-				</article>
-		
-			<!-- Pager -->
-				<div class="pager">
-					<!--<a href="#" class="button previous">Previous Page</a>-->
-					<div class="pages">
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<span>&hellip;</span>
-						<a href="#">20</a>
-					</div>
-					<a href="#" class="button next">Next Page</a>
-				</div>
+<div id="content">
+  <div id="content-inner">
 
-		</div>
-	</div>
+    <!-- Post -->
+    <article class="is-post is-post-excerpt">
+      <header>
+	<!--
+	    Note: Titles and bylines will wrap automatically when necessary, so don't worry
+	    if they get too long. You can also remove the "byline" span entirely if you don't
+	    need a byline.
+	  -->
+	<h2><a href="#">Welcome to PowerForms</a></h2>
+	<span class="byline">Forms, letters and statements for any situation. In the language you need.</span>
+      </header>
+      <a href="#" class="image image-full"><img src="http://www.impowerable.com/wp-content/uploads/2012/06/writing_a_letter.jpg" alt="" height=300 /></a>
+      <p>
+	<strong>Hello!</strong> You're looking at PowerForms, a site that helps you whenever you need to write letters or talk to any institution, organization, professor, etc. Next time you need to write an excuse or cancel a contract just fill in your name and other info and you're good to go. Even if you need it in German. 
+      </p>
+
+      <style type="text/css">
+	.recent-letter{
+	
+	float: left;
+	margin: 10px;
+	}
+
+	.recent-letter h3{
+
+	background: #e2e2e2;
+	}
+
+      </style>
+
+      <h2>Recent Forms</h2>
+    <% for(var i=0; i<letters.length; i++){ %>
+       
+       <div class="recent-letter">
+	 <h3><a href="/letter/<%= letters[i].name %>"><%= letters[i].displayname %></a></h3>
+	 <% for(var j=0;j<letters[i].tags.length;j++){ %>
+	    <div class="recent-letter-tag">
+	      <a href="/search/letters/tags/?tag=<%= letters[i].tags[j].name %>">
+		<%= letters[i].tags[j].name %>
+	      </a>
+	    </div>
+	 <% } %>
+       </div>
+    <% } %>
+
+    </article>
+  </div>
+</div>
 <% include base-footer %>

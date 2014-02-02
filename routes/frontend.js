@@ -50,6 +50,12 @@ exports.init = function(models){
 
 	var template = false;
 
+	if(req.query.tag){
+
+	    req.body.tags = [req.query.tag];
+	    template = true;
+	}
+
 	if(req.body.tag){
 	    req.body.tags = [req.body.tag];
 	    template = true;
@@ -249,6 +255,24 @@ exports.init = function(models){
 	    });
 	    
 	});
+    };
+
+    objs.recent = function(req, res){
+
+	models.Letter.find({name: orm.like('%')},
+	    function(e,objs){
+		
+		var objs2 = [];
+		objs.forEach(function(o){
+		    objs2.push({
+			name: o.name,
+			displayname: o.displayname,
+			tags: o.tags
+		    });
+		});
+		console.log(objs2);
+		res.render('homepage',{letters: objs2});
+	    });
     };
 
 

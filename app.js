@@ -42,11 +42,12 @@ app.configure('development', function(){
 
 var handlers = frontend.init(models);
 
-app.get('/', handlers.top);
+app.get('/', handlers.recent);
 app.get('/editor', handlers.editor);
 app.get('/letter/:name', handlers.formname);
 app.get('/create-form', handlers.createform);
 app.post('/search/letters/tags', handlers.searchLetters);
+app.get('/search/letters/tags', handlers.searchLetters);
 app.post('/search/tags/name', handlers.searchTags);
 app.get('/search/tags/name', handlers.searchTags);
 app.post('/create-form/submit', handlers.submitform);
