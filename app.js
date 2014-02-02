@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-domain = 'netowork.me:4321/'
+domain = 'netowork.me:4321'
 Prelude = require('prelude-ls');
 var sqlite = require('sqlite3').verbose()
   , models = require('./routes/models');
