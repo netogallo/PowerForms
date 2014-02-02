@@ -5,6 +5,16 @@
 		<div id="content-inner">
 			<!-- Post -->
 				<article class="is-post is-post-excerpt" id="article-new-letter">
+								<div id="fb-root"></div>
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+				<div class="fb-like" data-href="http://powerforms.com/comments" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 					<header>
 						<h2><a href="#"><%= letter.displayname %></a></h2>
 						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
@@ -24,5 +34,17 @@
 					<input type="submit" onclick='renderPdf()'
 				</article>
 		</div>
-	</div>
+		<p><%- letter.letter %></p>
+	</article>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="fb-comments" data-href="http://powerforms.com/comments" data-numposts="5" data-colorscheme="light"></div>
+</div>
+</div>
 <% include base-footer %>
