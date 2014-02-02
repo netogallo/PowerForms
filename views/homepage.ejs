@@ -35,7 +35,9 @@
       </style>
 
       <h2>Recent Forms</h2>
-    <% for(var i=0; i<letters.length && letters[i].name!=""; i++){ %>
+    <% for(var i=0; i<letters.length; i++){ %>
+    	<% if(letters[i].name===""){ i++;%>
+    	<% } %>
        <h2 id="search-result">
      <a href="/letter/<%= letters[i].name %>">
       <%= (i+1) %>. <%= letters[i].displayname %>
