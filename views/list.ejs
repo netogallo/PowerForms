@@ -3,18 +3,23 @@
 <!-- Content -->
 <div id="content">
   <div id="content-inner">
+    <h3>Your search returned <%= letters.length %> results.</h3>
+    <br>
     <% for(var i = 0; i < letters.length; i++){ %>
     <!-- Post -->
-    <article class="is-post is-post-excerpt">
-      <header>
-	<h2>
-	  <a href="/letter/<%= letters[i].name %>">
-	    <%= letters[i].displayname %>
-	  </a>
-	</h2>
-      </header>
-    </article>
-    <% } %>
-  </div>
+    <h2 id="search-result">
+     <a href="/letter/<%= letters[i].name %>">
+      <%= (i+1) %>. <%= letters[i].displayname %>
+    </a>
+        <% for(var j = 0; j < letters[i].tags.length; j++){ %>
+          <k>
+            <% if(j===letters[i].tags.length-1) { %> ( <% } %>
+            <%= letters[i].tags[j].name %>
+            <% if(j===0) { %> ) <% } else { %>, <% }%>
+          </k>
+        <% } %>
+  </h2>
+  <% } %>
+</div>
 </div>
 <% include base-footer %>
