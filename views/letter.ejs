@@ -1,35 +1,38 @@
 <% include base %>
 
 <!-- Content -->
-<div id="content">
-	<div id="content-inner">
-		<!-- Post -->
-		<article class="is-post is-post-excerpt" id="article-new-letter">
-			<div id="fb-root"></div>
-			<div id="fb-root"></div>
-			<script>(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));</script>
-			<div class="fb-like" data-href="http://powerforms.com/comments" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-			<header>
-				<h2><a href="#"><%= letter.query %></a></h2>
-				<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
-					<%= letter.tags[i].name %>
-					<% } %>
-				</span>
-			</header>
-			<div class="info">
-				<span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
-				<ul class="stats">
-					<li><a href="#" class="fa fa-comment">16</a></li>
-					<li><a href="#" class="fa fa-heart">32</a></li>
-					<li><a href="#" class="fa fa-facebook">128</a></li>
-				</li>
-			</ul>
+	<div id="content">
+		<div id="content-inner">
+			<!-- Post -->
+				<article class="is-post is-post-excerpt" id="article-new-letter">
+								<div id="fb-root"></div>
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+				<div class="fb-like" data-href="http://powerforms.com/comments" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+					<header>
+						<h2><a href="#"><%= letter.query %></a></h2>
+						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
+							<%= letter.tags[i].name %>
+							<% } %>
+						</span>
+					</header>
+					<div class="info">
+						<span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
+						<ul class="stats">
+							<li><a href="#" class="fa fa-comment">16</a></li>
+							<li><a href="#" class="fa fa-heart">32</a></li>
+							<li><a href="#" class="fa fa-facebook">128</a></li>
+						</ul>
+					</div>
+					<div id="form-content"><%- letter.letter %></div>
+					<input type="submit" onclick='renderPdf()'
+				</article>
 		</div>
 		<p><%- letter.letter %></p>
 	</article>
