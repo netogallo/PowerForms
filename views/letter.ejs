@@ -15,7 +15,8 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 				<script type="text/javascript">
-				$("#fb-root").after('<div class="fb-like" data-href="' + window.location.href + 
+				    var root = $("#fb-root")[0]; 
+					$(root).after('<div class="fb-like" data-href="' + window.location.href + 
 					'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>');
 				</script>
 					<header>
