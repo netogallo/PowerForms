@@ -213,9 +213,15 @@ exports.init = function(models){
 
 	fs.readFile(out,'binary',function(e,f){
 
-	    res.writeHead(200);
-	    res.write(f,'binary');
-	    res.end();
+	    if(e){
+	
+		res.json({error:true,reason: e});
+	    }else{
+		console.log(e);
+		res.writeHead(200);
+		res.write(f,'binary');
+		res.end();
+	    }
 	});
     };
 
