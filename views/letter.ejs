@@ -15,9 +15,9 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 				<script type="text/javascript">
-				$(body).append('<div class="fb-like" data-href="' + window.location.href + 
+				$("#fb-root").after('<div class="fb-like" data-href="' + window.location.href + 
 					'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>');
-				</script>ß
+				</script>
 					<header>
 						<h2><a href="#"><%= letter.displayname %></a></h2>
 						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
