@@ -35,19 +35,20 @@
       </style>
 
       <h2>Recent Forms</h2>
-    <% for(var i=0; i<letters.length || i>20; i++){ %>
-       
-       <div class="recent-letter">
-	 <h3><a href="/letter/<%= letters[i].name %>"><%= letters[i].displayname %></a></h3>
-	 <% for(var j=0;j<letters[i].tags.length;j++){ %>
-	    <div class="recent-letter-tag">
-	      <a href="/search/letters/tags/?tag=<%= letters[i].tags[j].name %>">
-		<%= letters[i].tags[j].name %>
-	      </a>
-	    </div>
-	 <% } %>
-       </div>
-    <% } %>
+    <% for(var i=0; i<letters.length; i++){ %>
+       <h2 id="search-result">
+     <a href="/letter/<%= letters[i].name %>">
+      <%= (i+1) %>. <%= letters[i].displayname %>
+    </a>
+        <% for(var j = 0; j < letters[i].tags.length; j++){ %>
+          <k>
+            <% if(j===letters[i].tags.length-1) { %> ( <% } %>
+            <%= letters[i].tags[j].name %>
+            <% if(j===0) { %> ) <% } else { %>, <% }%>
+          </k>
+        <% } %>
+  </h2>
+  <% } %>
 
     </article>
   </div>
