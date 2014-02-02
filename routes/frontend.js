@@ -13,16 +13,27 @@ exports.init = function(models){
     };
 
     objs.formname = function(req,res){
-	models.Letter.find({name:req.params.name}, function(err, letter){
-	    var content = {letter: {name:letter[0].name, displayname:letter[0].displayname, letter:letter[0].letter}};
+	models.Letter.find({name:req.params.name},function(err, letter){
 	    if(letter.length>=1) {
+		var content = {
+		    letter: {
+			name: letter[0].name, 
+			displayname: letter[0].displayname, 
+			letter: letter[0].letter
+		    }
+		};
+
 		letter[0].getTags(function(err,arg) {
-		    console.log(letter.letter);
+		    console.log(arg);
 		    content.letter.tags=arg;
 		    res.render('letter',content);
 		});
 	    } else {
-		console.log("error");
+		console.log(req);
+		res.json({
+		    error:true,
+		    reason: req.params.name 
+		})
 	    }
 	});
     };
@@ -133,44 +144,54 @@ exports.init = function(models){
 
     objs.submitform = function(req,res){
 
-	var tags = [];
-	req.body.tags.split(';').forEach(function(t){
-	    tags.push({name: t});
-	});
+	models.Letter.find({name: req.body.name}, function(e,objs){
 
-	console.log(tags);
+	    if(e || objs.length && objs.length > 0){
 
-	var mkTags = function(tags, i){
-
-	    if(i >= tags.length){
-		
-
-		var letter = new models.Letter({
-		    name:req.body.name.replace(' ',''), 
-		    displayname:req.body.name,
-		    tags: tags,
-		    letter: req.body.letter,
-		    html: req.body.letter
-		});
-
-		letter.save(function(e,letter){
-		    console.log(e);
-		    res.json(letter);
+		res.json({
+		    error: true,
+		    reason: 'Form exists'
 		});
 	    }else{
+	
+		var tags = [];
+		req.body.tags.split(';').forEach(function(t){
+		    tags.push({name: t});
+		});
 
-		var t = new models.Tag({name: tags[i].name});
+		var mkTags = function(tags, i){
 
-		t.save(
-		    function(e,x){
-			tags[i] = x; 
-			mkTags(tags,i+1)
-		    });
+		    if(i >= tags.length){
+			
+
+			var letter = new models.Letter({
+			    name:req.body.name.replace(' ',''), 
+			    displayname:req.body.name,
+			    tags: tags,
+			    letter: req.body.letter,
+			    html: req.body.letter
+			});
+
+			letter.save(function(e,letter){
+			    console.log(e);
+			    res.json(letter);
+			});
+		    }else{
+
+			var t = new models.Tag({name: tags[i].name});
+
+			t.save(
+			    function(e,x){
+				tags[i] = x; 
+				mkTags(tags,i+1)
+			    });
+		    }
+		};
+
+		mkTags(tags,0);
 	    }
-	};
-
-	mkTags(tags,0);
-    }
+	});
+    };
 
     objs.getResult = function(req, res){
 

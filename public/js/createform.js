@@ -9,8 +9,8 @@ function uploadForm(){
 			letter: $("#letter-text").val()
 		} 
 	}).done(function(message) {
-		if(message.err==false){
-			alert("form successfully created");
+		if(!message.err){
+		    alert("form successfully created");
 		}
 	});
 }

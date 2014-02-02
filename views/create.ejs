@@ -31,7 +31,7 @@
 					    <br>
 						
 					</form>
-					<input type="submit" value="Submit" id="new-letter-submit">
+					<input type="submit" value="Submit" id="newLetterSubmit">
 				    </p>
 				</article>
 		</div>
@@ -41,7 +41,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var editor = $("#letter-text").cleditor()[0];
-		$("#new-letter-submit").bind("click", uploadForm);
+		$("#newLetterSubmit").on("click", uploadForm);
 		$('#create').addClass('current_page_item');		
 	})
 </script>
