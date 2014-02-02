@@ -14,7 +14,7 @@
 					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
-				<div class="fb-like" data-href="http://powerforms.com/comments" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+				<div class="fb-like" data-href="window.location.href" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 					<header>
 						<h2><a href="#"><%= letter.displayname %></a></h2>
 						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
@@ -43,7 +43,7 @@
 		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-	<div class="fb-comments" data-href="http://powerforms.com/comments" data-numposts="5" data-colorscheme="light"></div>
+	<div class="fb-comments" data-href="window.location.href" data-numposts="5" data-colorscheme="light"></div>
 </div>
 </div>
 <% include base-footer %>
