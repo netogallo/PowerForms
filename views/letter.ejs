@@ -14,7 +14,10 @@
 					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1465599910319624";
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
-				<div class="fb-like" data-href="window.location.href" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+				<script type="text/javascript">
+				$(body).append('<div class="fb-like" data-href="' + window.location.href + 
+					'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>');
+				</script>ß
 					<header>
 						<h2><a href="#"><%= letter.displayname %></a></h2>
 						<span class="byline">tags: <% for(var i=0;i<letter.tags.length;i++) { %>
