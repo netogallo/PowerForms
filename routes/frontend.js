@@ -17,7 +17,7 @@ exports.init = function(models){
 	    var content = {letter: {name:letter[0].name, displayname:letter[0].displayname, letter:letter[0].letter}};
 	    if(letter.length>=1) {
 		letter[0].getTags(function(err,arg) {
-		    console.log(arg);
+		    console.log(letter.letter);
 		    content.letter.tags=arg;
 		    res.render('letter',content);
 		});
@@ -144,12 +144,13 @@ exports.init = function(models){
 
 	    if(i >= tags.length){
 		
-		console.log(tags);
 
 		var letter = new models.Letter({
 		    name:req.body.name.replace(' ',''), 
 		    displayname:req.body.name,
-		    tags: tags
+		    tags: tags,
+		    letter: req.body.letter,
+		    html: req.body.letter
 		});
 
 		letter.save(function(e,letter){
@@ -170,7 +171,74 @@ exports.init = function(models){
 
 	mkTags(tags,0);
     }
-			      
+
+    objs.getResult = function(req, res){
+
+	var fs = require('fs');
+	console.log(req.query);
+
+	if(!req.query.file_id){
+
+	    res.writeHead(404);
+	    res.write('No file :(');
+	    res.end();
+	}
+
+	var out = '/tmp/render_'+req.query.file_id+'.pdf';
+
+	fs.readFile(out,'binary',function(e,f){
+
+	    res.writeHead(200);
+	    res.write(f,'binary');
+	    res.end();
+	});
+    };
+
+    objs.renderPdf = function(html, res){
+
+	var ident = Math.floor(Math.random()*100000);
+	var fs = require('fs');
+	var exec = require('child_process');
+	var tmp = '/tmp/render.html';
+	var out = '/tmp/render_'+ident+'.pdf';
+
+	fs.writeFile(tmp,html,function(e){
+	    
+	    var pandoc = exec.spawn(
+		'pandoc',
+		['-f','html','-o',out,tmp]);
+	    pandoc.on('exit',function(r){
+
+		
+
+		res.json({
+		    file_id: ident
+		});
+		    //res.close();
+	    });
+	    
+	});
+    };
+
+
+    objs.renderHtml = function(req,res){
+
+	if(req.body.html){
+
+	    if(!req.body.type){
+
+		req.body.type = 'text';
+	    }
+
+	    if(req.body.type == 'pdf'){
+
+
+		objs.renderPdf(req.body.html,res);
+	    }
+
+	}
+	
+    }
     
     return objs;
 };

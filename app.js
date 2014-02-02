@@ -49,6 +49,8 @@ app.post('/search/letters/tags', handlers.searchLetters);
 app.post('/search/tags/name', handlers.searchTags);
 app.get('/search/tags/name', handlers.searchTags);
 app.post('/create-form/submit', handlers.submitform);
+app.post('/render', handlers.renderHtml);
+app.get('/render_res', handlers.getResult);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
