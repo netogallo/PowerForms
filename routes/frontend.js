@@ -3,8 +3,12 @@ exports.init = function(models){
     var objs={};
 
     objs.top = function(req,res){
-
-	res.render('homepage');
+    	console.log("asd");
+    models.Letter.each(function(p){
+    	console.log("a");
+    });
+    console.log(data);
+	res.render('homepage',data);
     };
 
     objs.editor = function(req,res){
