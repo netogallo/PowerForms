@@ -21,6 +21,9 @@ exports.init = function(models){
 			name: letter[0].name, 
 			displayname: letter[0].displayname, 
 			letter: letter[0].letter
+		    },
+		    md: {
+			loc: domain + req.url
 		    }
 		};
 
