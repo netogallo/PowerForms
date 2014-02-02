@@ -35,7 +35,7 @@
       </style>
 
       <h2>Recent Forms</h2>
-    <% for(var i=0; i<letters.length; i++){ %>
+    <% for(var i=0; i<letters.length || i>20; i++){ %>
        
        <div class="recent-letter">
 	 <h3><a href="/letter/<%= letters[i].name %>"><%= letters[i].displayname %></a></h3>
