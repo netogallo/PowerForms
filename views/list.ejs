@@ -1,0 +1,20 @@
+<% include base %>
+
+<!-- Content -->
+<div id="content">
+  <div id="content-inner">
+    <% for(var i = 0; i < letters.length; i++){ %>
+    <!-- Post -->
+    <article class="is-post is-post-excerpt">
+      <header>
+	<h2>
+	  <a href="/letter/<%= letters[i].name %>">
+	    <%= letters[i].displayname %>
+	  </a>
+	</h2>
+      </header>
+    </article>
+    <% } %>
+  </div>
+</div>
+<% include base-footer %>

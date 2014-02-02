@@ -1,8 +1,9 @@
 <!-- Sidebar -->
+</div>
 <div id="sidebar">
 
 	<!-- Logo -->
-		<a href="#"><div id="logo">
+		<a href="/"><div id="logo">
 			<h1>PowerForms</h1>
 		</div></a>
 
@@ -78,16 +79,18 @@
 
 	<!-- Search -->
 		<section class="is-search">
-			<form method="post" action="#">
-				<input type="text" class="text" name="search" placeholder="Search tags" />
-			</form>
+		  
+		  <form method="post" action="/search/letters/tags">
+		  <input type="text" name="tag" id="searchTags" placeholder="Search tags" />
+		  </form>
+			
 		</section>
 
 	<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li class="current_page_item"><a href="#">Latest Post</a></li>
-				<li><a href="create-form">Create Form</a></li>
+				<li id="create"><a href="/create-form">Create Form</a></li>
+				<li id="latest"><a href="#">Latest Post</a></li>
 				<li><a href="#">Browse</a></li>
 				<li><a href="#">About Us</a></li>
 				<li><a href="#">Contact</a></li>
@@ -203,3 +206,18 @@
 		</div>
 
 </div>
+
+<script src="/js/jquery.autocomplete.min.js"></script>
+
+<script type="text/javascript">
+  
+  $('#searchTags').autocomplete({
+  serviceUrl:'/search/tags/name',
+  minChars:1,
+  //lookup: ['tagxy'],
+  delimiter: /(,|;)\s*/,
+  });
+  
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@ exports.models = function(err, db){
     }, {
         methods: {},
 	validations: {
-	    fbid: orm.validators.unique('User name already taken')
+	    fbid: db.validators.unique('User name already taken')
         }
     });
 
@@ -37,7 +37,7 @@ exports.models = function(err, db){
         },
         validations: {
 
-	    name: orm.validators.unique('name must be unique')
+	    name: db.validators.unique('name must be unique')
         }
     });
 

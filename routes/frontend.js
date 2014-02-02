@@ -31,7 +31,14 @@ exports.init = function(models){
 	res.render('create');
     };
 
-    objs.searchTags = function(req, res){
+    objs.searchLetters = function(req, res){
+
+	var template = false;
+
+	if(req.body.tag){
+	    req.body.tags = [req.body.tag];
+	    template = true;
+	}
 
 	if(req.body.tags 
 	   && req.body.tags.length){
@@ -49,7 +56,6 @@ exports.init = function(models){
 	    {name: q},
 	    function(err, tags){
 		
-		console.log(tags);
 		
 		// var letters = function(rec,tags,letters){
 
@@ -64,8 +70,21 @@ exports.init = function(models){
 		//     }
 		// }
 
-		res.json(tags[0].letters);
+		var letters = [];
+		
+		tags.forEach(function(t){
+		    //console.log(t.letters);
+		    letters = letters.concat(t.letters);
+		});
 
+		if(template){
+		 
+		    res.render('list',{letters:letters});
+		}else{
+		    
+		    //console.log(letters);
+		    res.json(letters);
+		}
 	    });
 	}else{
 
@@ -73,5 +92,85 @@ exports.init = function(models){
 	}
     };
 
+    objs.searchTags = function(req,res){
+
+	if(req.query){
+
+	    models.Tag.find({
+		name: orm.like('%'+req.query.query+'%')
+	    },function(e,vals){
+
+		var e = {};
+		var suggestions = [];
+
+		var ts = Prelude.map(function(t){
+		    if(e[t.name] == undefined){
+
+			e[t.name] = true;
+			suggestions.push(t.name);
+			return true;
+		    }
+		},vals);
+
+		console.log(suggestions);
+
+		res.json({
+		    query: req.body.query,
+		    suggestions: suggestions,
+		    data: suggestions
+		});
+	    });
+	}else{
+
+	    res.json({
+		query: req.body.query,
+		suggestions: [],
+		data: []
+	    });
+	}
+	
+    };
+
+    objs.submitform = function(req,res){
+
+	var tags = [];
+	req.body.tags.split(';').forEach(function(t){
+	    tags.push({name: t});
+	});
+
+	console.log(tags);
+
+	var mkTags = function(tags, i){
+
+	    if(i >= tags.length){
+		
+		console.log(tags);
+
+		var letter = new models.Letter({
+		    name:req.body.name.replace(' ',''), 
+		    displayname:req.body.name,
+		    tags: tags
+		});
+
+		letter.save(function(e,letter){
+		    console.log(e);
+		    res.json(letter);
+		});
+	    }else{
+
+		var t = new models.Tag({name: tags[i].name});
+
+		t.save(
+		    function(e,x){
+			tags[i] = x; 
+			mkTags(tags,i+1)
+		    });
+	    }
+	};
+
+	mkTags(tags,0);
+    }
+			      
+    
     return objs;
 };

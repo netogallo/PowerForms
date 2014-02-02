@@ -10,9 +10,9 @@
 						<span class="byline">This form lets you create a new letter. Please fill in all fields.</span>
 					</header>
 					<p>
-					<form>
-						Title: <input type="text" name="letter-title"><br><br>
-						Tags (separated by semi-colons): <input type="text" name="letter-tags"><br><br>
+					<form id="new-letter">
+						Title: <input type="text" id="letter-title"><br><br>
+						Tags (separated by semi-colons): <input type="text" id="letter-tags"><br><br>
 						Letter:
 					  <script src="/js/jquery.min.js"></script>
 					  <script src="/cleditor/jquery.cleditor.js"></script>
@@ -23,16 +23,25 @@
 					  </head>
 					  <body>
 					    <div>
-					      <textarea id="mytext" rows="100" cols="50"></textarea>
+					      <textarea id="letter-text" rows="100" cols="50"></textarea>
 					    </div>
 					    <script type="text/javascript">
-					      $("#mytext").cleditor();
+					      
 					    </script>
 					    <br>
-						<input type="submit" value="Submit">
+						
 					</form>
+					<input type="submit" value="Submit" id="new-letter-submit">
 				    </p>
 				</article>
 		</div>
 	</div>
 <% include base-footer %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var editor = $("#letter-text").cleditor()[0];
+		$("#new-letter-submit").bind("click", uploadForm);
+		$('#create').addClass('current_page_item');		
+	})
+</script>
