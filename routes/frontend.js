@@ -4,6 +4,7 @@ exports.init = function(models){
 
     objs.top = function(req,res){
 
+	console.log(req.connection);
 	res.render('homepage');
     };
 
