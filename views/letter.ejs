@@ -15,9 +15,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 				<script type="text/javascript">
-				    var root = $("#fb-root")[0]; 
-					$(root).after('<div class="fb-like" data-href="' + window.location.href + 
-					'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>');
+					
 				</script>
 					<header>
 						<h2><a href="#"><%= letter.displayname %></a></h2>
@@ -47,9 +45,13 @@
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			
+
 		$('#article-new-letter').after(
 			'<div class="fb-comments" data-href="' + window.location.href + 
 			'" data-numposts="5" data-colorscheme="light"></div>');
+	});
 	</script>
 </div>
 </div>
